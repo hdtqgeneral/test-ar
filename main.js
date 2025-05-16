@@ -33,7 +33,7 @@ function initScene() {
 
   const model = document.createElement("a-entity");
   model.setAttribute("id", "detection-model");
-  model.setAttribute("fbx-model", "target.fbx");
+  model.setAttribute("fbx-model", "src: url(target.fbx)");
   model.setAttribute("rotation", "0 90 90");
   model.setAttribute("scale", "10 10 10");
   entity.appendChild(model);
