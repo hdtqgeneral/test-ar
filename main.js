@@ -25,10 +25,7 @@ function initScene() {
   document.body.appendChild(scene);
 
   const entity = document.createElement("a-entity");
-  entity.setAttribute(
-    "simple-ar",
-    "src: target.jpg; minCutOffValue: 1; betaValue:0.1; dCutOffValue: 0.001;"
-  );
+  entity.setAttribute("simple-ar", "src: target.jpg; minCutOffValue: 1; betaValue:0.1; dCutOffValue: 0.001;");
   scene.appendChild(entity);
 
   const model = document.createElement("a-entity");
