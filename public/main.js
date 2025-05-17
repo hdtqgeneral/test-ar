@@ -1,22 +1,41 @@
-import './style.css'
+function init() {
+  if (isMobile()) {
+    console.log("Mobile device detected");
+    initAR();
+  } else {
+    notSupported();
+  }
+}
+
+function initAR() {
+  const script = document.createElement("script");
+  script.src = "simple-ar.min.js";
+  script.onload = () => {
+    console.log("simple-ar loaded");
+    onWasmLoaded();
+    initScene();
+  };
+  document.body.appendChild(script);
+}
 
 function initScene() {
-  console.log("Initializing scene...");
+  console.log("Initializing A-Frame scene");
 
   const scene = document.createElement("a-scene");
   document.body.appendChild(scene);
 
   const entity = document.createElement("a-entity");
   entity.setAttribute(
-    "simple-ar", "src: target.jpg; minCutOffValue: 1; betaValue:0.1; dCutOffValue: 0.001;"
+    "simple-ar",
+    "src: target.jpg; minCutOffValue: 1; betaValue:0.1; dCutOffValue: 0.001;"
   );
   scene.appendChild(entity);
 
   const model = document.createElement("a-entity");
   model.setAttribute("id", "detection-model");
-  model.setAttribute("fbx-model", "target.fbx");
-  // model.setAttribute("rotation", "0 90 90");
-  // model.setAttribute("scale", "10 10 10");
+  model.setAttribute("fbx-model", "model.fbx");
+  model.setAttribute("rotation", "0 90 90");
+  model.setAttribute("scale", "10 10 10");
   entity.appendChild(model);
 
   const camera = document.createElement("a-camera");
@@ -48,12 +67,4 @@ function notSupported() {
   document.body.appendChild(div);
 }
 
-function main() {
-  if (isMobile()) {
-    initScene();
-  } else {
-    notSupported();
-  }
-}
-
-main();
+init();

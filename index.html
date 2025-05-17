@@ -1,13 +1,26 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="/aframe.min.js"></script>
+  <script src="/aframe-extras.loaders.min.js"></script>
+  <title>Budweiser AR</title>
+</head>
+
+<body style="margin: 0; overflow: auto; background-color: #000000;">
+  <script src="/simple-ar.min.js" onload="onWasmLoaded()"></script>
+  <a-scene>
+    <a-light type="ambient" intensity="7.5"></a-light>
+    <a-entity simple-ar="src: target.jpg; minCutOffValue: 0.5; betaValue:0.05; dCutOffValue: 0.0001;">
+      <a-gltf-model src="url(target.gltf)" scale="4 4 4" position="-0.5 -0.5 0" rotation="0 -90 0"
+        material="src:textures/color.png; roughnessMap:textures/roughness.png; metalnessMap:textures/metallic.png; normalMap:textures/normal.png; alphaMap:textures/alpha.png; alphaTest: 0; transparent: false;">
+      </a-gltf-model>
+    </a-entity>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  </a-scene>
+</body>
+
 </html>
